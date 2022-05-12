@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            margin-top: 50px;
+            height: 500px;
+        }
+
+        .ball {
+            width: 50px;
+            height: 50px;
+            background-color: #8ac007;
+            border-radius: 50%;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function () {
+            const body = document.body;
+            const ball = document.getElementById('ball');
+            var num = 0;
+            var currentx = 0;
+            var targetx = 0;
+            var moving = false;
+
+            body.addEventListener('wheel', function (e) {
+                // console.log("mousewheel event!!");
+
+                if (moving) return;
+
+                let delta = e.wheelDeltaY;
+                // console.log("delta : " + delta);
+                if (delta > 0) {
+                    // console.log("up");
+                    if (num > 0) {
+                        num -= 1;
+                    }
+                } else {
+                    // console.log("down");
+                    if (num < 20) {
+                        num += 1;
+                    }
+                }
+
+                moving = true;
+                targetx = 100 * num;
+                console.log("num : " + num + ", currentx : " + currentx + ", targetx : " + targetx);
+
+                let aniTimer = setInterval(function () {
+                    if (targetx > currentx) {
+                        if (Math.abs(targetx - currentx) > 5) { // abs는 기호를 빼고 양수만 가져온다.
+                            currentx += 5;
+                        } else {
+                            currentx = targetx;
+                            clearInterval(aniTimer);
+                            moving = false;
+                        }
+                    } else {
+                        if (Math.abs(targetx - currentx) > 5) {
+                            currentx -= 5;
+                        } else {
+                            currentx = targetx;
+                            clearInterval(aniTimer);
+                            moving = false;
+                        }
+                    }
+                    ball.style.marginLeft = currentx + "px";
+                }, 5);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="ball" id="ball"></div>
+    </div>
+</body>
+
+</html>

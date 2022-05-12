@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 10;
+            padding: 0%;
+            border: 0;
+        }
+
+        .container {
+            margin-top: 35px;
+        }
+
+        button {
+            padding: 5px 15px;
+            background-color: #ccc;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.5s;
+            z-index: 1000;
+            position: relative;
+        }
+
+        button:hover {
+            background-color: #888;
+        }
+
+        img[alt=lion] {
+            display: block;
+            margin-top: 50px;
+            margin-left: 50px;
+            width: 240px;
+            height: 240px;
+            transition: all 0.4s;
+        }
+    </style>
+
+    <script>
+        'use strict';
+        // $(document).ready(function(){});
+        window.addEventListener('load', function (e) {
+            let y = 50;
+            let x = 50;
+            const topBtn = document.getElementById('top');
+            const bottomBtn = document.getElementById('bottom');
+            const leftBtn = document.getElementById('left');
+            const rightBtn = document.getElementById('right');
+            const container = document.getElementsByClassName('container')[0];
+
+            for (let i = 0; i < container.children.length; i++) {
+                if (container.children[i].className == 'lion') {
+                    var lion = container.children[i];
+                }
+            }
+
+            // 이벤트 적용
+            topBtn.addEventListener('click', function () {
+                y = y - 100;
+                lion.style.marginTop = y + "px";
+            });
+
+            bottomBtn.addEventListener('click', function () {
+                y = y + 100;
+                lion.style.marginTop = y + "px";
+            });
+
+            leftBtn.addEventListener('click', function () {
+                x = x - 100;
+                lion.style.marginLeft = x + "px";
+            });
+
+            rightBtn.addEventListener('click', function () {
+                x = x + 100;
+                lion.style.marginLeft = x + "px";
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <button id="top">top</button>
+        <button id="bottom">buttom</button>
+        <button id="left">left</button>
+        <button id="right">right</button>
+        <img src="images/lion.gif" alt="lion" class="lion">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 10;
+            padding: 0%;
+            border: 0;
+        }
+
+        .container {
+            margin-top: 35px;
+        }
+
+        button {
+            padding: 5px 15px;
+            background-color: #ccc;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.5s;
+            z-index: 1000;
+            position: relative;
+        }
+
+        button:hover {
+            background-color: #888;
+        }
+
+        img[alt=lion] {
+            display: block;
+            margin-top: 50px;
+            width: 240px;
+            height: 240px;
+            transition: all 0.4s;
+        }
+
+        .lion.moving {
+            animation: moving 4s linear infinite;
+        }
+
+        @keyframes moving {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(1000px);
+            }
+        }
+    </style>
+
+    <script>
+        'use strict';
+        // $(document).ready(function(){});
+        window.addEventListener('load', function (e) {
+
+            const addBtn = document.getElementById('add');
+            const removeBtn = document.getElementById('remove');
+            const container = document.getElementsByClassName('container')[0];
+
+            for (let i = 0; i < container.children.length; i++) {
+                if (container.children[i].className == 'lion') {
+                    var lion = container.children[i];
+                }
+            }
+
+            // 이벤트 적용
+            addBtn.addEventListener('click', function () {
+                lion.classList.add('moving');
+            });
+
+            removeBtn.addEventListener('click', function () {
+                lion.classList.remove('moving');
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <button id="add">add</button>
+        <button id="remove">remove</button>
+        <img src="images/lion.gif" alt="lion" class="lion">
+    </div>
+</body>
+
+</html>
